@@ -8,6 +8,10 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+//database connection
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/simplifiedshop', {useMongoClient: true});
+
 var app = express();
 
 // view engine setup
