@@ -3,14 +3,15 @@ const router = express.Router();
 const Product = require('../models/Product')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/:id', function(req, res, next) {
+  const productId = req.params.id
   
-  Product.find({}, (err, products) => {
+  Product.findById(productId, (err, product) => {
     if (err) {
       next(err);
       return;
     }
-    res.render('index', { title: 'Express App', products });
+    res.render('products', {product});
   })
 
   
