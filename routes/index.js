@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
       next(err);
       return;
     }
-    res.render('index', { title: 'Express App', products });
+    res.render('index', {products});
   })
 
   

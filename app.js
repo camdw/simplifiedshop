@@ -4,10 +4,14 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 var products = require('./routes/products');
+var cart = require('./routes/cart');
+var login = require('./routes/login');
 
 //database connection
 const mongoose = require('mongoose');
@@ -27,9 +31,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
 app.use('/', index);
-app.use('/users', users);
-app.use('/products', products)
+app.use('/products', products);
+app.use('/cart', cart);
+app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

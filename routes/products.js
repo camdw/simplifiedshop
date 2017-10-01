@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product')
+const Cart = require('../models/Cart')
 
-/* GET home page. */
+/* GET product details. */
 router.get('/:id', function(req, res, next) {
   const productId = req.params.id
   
@@ -16,5 +17,10 @@ router.get('/:id', function(req, res, next) {
 
   
 });
+
+/* POST add to cart. */
+
+
+
 
 module.exports = router;

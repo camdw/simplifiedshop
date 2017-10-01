@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <p>Product list:</p>
+    <p>Category list:</p>
     <ul>
       <% products.forEach((product) => { %>
         <li>
@@ -13,5 +12,15 @@
         </li>
       <% }) %>
     </ul>
+
+
+    <p>Product list:</p>
+    <ul>
+        <% products.forEach((product) => { %>
+          <li>
+              <a href="/products/<%= product._id %>"><%= product.title %></a>
+          </li>
+        <% }) %>
+      </ul>
   </body>
 </html>

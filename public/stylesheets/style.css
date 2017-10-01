@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+.product-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-content: space-around;
+  align-items: center;
+}
